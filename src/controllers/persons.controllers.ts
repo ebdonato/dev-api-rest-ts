@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import log from "../helpers/logger";
 import { createPersonInput, findPersonInput, listPersonsInput, updatePersonInput } from "../schemas/persons.schemas";
 import {
     createPerson,
@@ -7,7 +8,6 @@ import {
     listPersons,
     updatePersonById,
 } from "../services/persons.services";
-import log from "../helpers/logger";
 
 // TODO verificar se CPF já existe
 export async function createPersonController(req: Request<{}, {}, createPersonInput>, res: Response) {
