@@ -199,11 +199,11 @@
     "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
     "containerId": "",
     "name": "List Accounts",
-    "url": "{{baseUrl}}/accounts?orderBy=balance&descending=1",
+    "url": "{{baseUrl}}/accounts?type[]=2&type[]=1&balance[]=-200.23&balance[]=564.43",
     "method": "GET",
     "sortNum": 30000,
     "created": "2023-05-15T05:48:01.059Z",
-    "modified": "2023-05-15T19:44:03.941Z",
+    "modified": "2023-05-15T20:36:17.755Z",
     "headers": [],
     "params": [
       {
@@ -227,11 +227,57 @@
       {
         "name": "orderBy",
         "value": "balance",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "descending",
         "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "active",
+        "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "type[]",
+        "value": "2",
+        "isPath": false
+      },
+      {
+        "name": "type[]",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "persons[]",
+        "value": "38",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "persons[]",
+        "value": "18",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "persons[]",
+        "value": "222",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "balance[]",
+        "value": "-200.23",
+        "isPath": false
+      },
+      {
+        "name": "balance[]",
+        "value": "564.43",
         "isPath": false
       }
     ],

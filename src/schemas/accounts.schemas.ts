@@ -77,6 +77,30 @@ export const listAccountsSchema = object({
                 message: "Opção inválida para ascendente/descendente",
             })
             .optional(),
+        active: string()
+            .refine((val) => ["true", "false", "1", "0"].includes(val), {
+                message: "Opção inválida para Situação de Conta",
+            })
+            .optional(),
+        types: string()
+            .refine((val) => /^\d+$/.test(val) && +val >= 0, {
+                message: "Tipo da Conta deve ser um número inteiro",
+            })
+            .array()
+            .optional(),
+        persons: string()
+            .refine((val) => /^\d+$/.test(val) && +val >= 0, {
+                message: "ID Pessoa deve ser um número inteiro",
+            })
+            .array()
+            .optional(),
+        balance: string()
+            .refine((val) => /^-?\d+(?:\.\d+)?$/.test(val), {
+                message: "Saldo deve ser um número",
+            })
+            .array()
+            .length(2)
+            .optional(),
     }),
 });
 

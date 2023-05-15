@@ -32,7 +32,7 @@ export async function updateTypeAccountById(id: number, type: number) {
 }
 
 export async function listAccounts(input: listAccountsInput) {
-    const { page, rowsPerPage, orderBy = "id", descending } = input;
+    const { page, rowsPerPage, orderBy = "id", descending, active, types, persons, balance } = input;
     const columnsToList = ["id", "balance", "daily_limit", "active", "type", "person_id"];
 
     const result = await listFromTable({
@@ -43,6 +43,14 @@ export async function listAccounts(input: listAccountsInput) {
         orderBy,
         descending: descending === "true" || descending === "1",
         searchInsensitive: ENVIRONMENT !== "development",
+        filterAnd: {
+            ...(active && { active: [active === "true" || active === "1"] }),
+            ...(types && { type: types.map((type) => +type) }),
+            ...(persons && { person_id: persons.map((person) => +person) }),
+        },
+        filterBetween: {
+            ...(balance && { balance: [+balance[0], +balance[1]] }),
+        },
     });
 
     log.info(`Accounts found: ${result.rowsNumber}`);

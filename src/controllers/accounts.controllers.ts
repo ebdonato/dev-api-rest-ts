@@ -138,8 +138,8 @@ export async function updateTypeAccountController(
 export async function listAccountsController(req: Request<{}, {}, {}, listAccountsInput>, res: Response) {
     try {
         log.info("Listing account");
-        const { page, rowsPerPage, orderBy, descending } = req.query;
-        const list = await listAccounts({ page, rowsPerPage, orderBy, descending });
+        const { page, rowsPerPage, orderBy, descending, active, types, persons, balance } = req.query;
+        const list = await listAccounts({ page, rowsPerPage, orderBy, descending, active, types, persons, balance });
         res.send(list);
     } catch (error) {
         log.error(error);
