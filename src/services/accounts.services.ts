@@ -2,12 +2,7 @@ import { ENVIRONMENT } from "../constants";
 import db from "../helpers/database";
 import listFromTable from "../helpers/listTable";
 import log from "../helpers/logger";
-import {
-    createAccountInput,
-    listAccountsInput,
-    updateDailyLimitAccountInput,
-    updateStatusAccountInput,
-} from "../schemas/accounts.schemas";
+import { createAccountInput, listAccountsInput } from "../schemas/accounts.schemas";
 
 export async function createAccount(input: createAccountInput) {
     const [{ id }] = await db("accounts").insert(input).returning("id");
