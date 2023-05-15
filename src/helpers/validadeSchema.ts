@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { AnyZodObject } from "zod";
+import log from "./logger";
 
 const validateSchema = (schema: AnyZodObject) => (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -10,6 +11,7 @@ const validateSchema = (schema: AnyZodObject) => (req: Request, res: Response, n
         });
         next();
     } catch (e: any) {
+        log.error(e);
         return res.status(400).send(e.errors);
     }
 };
