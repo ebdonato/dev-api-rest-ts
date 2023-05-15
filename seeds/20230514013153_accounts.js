@@ -13,7 +13,7 @@ exports.seed = async function (knex) {
 
     const accounts = Array.from({ length: NUMBER_ACCOUNTS }, () => ({
         person_id: idsPersons[randNumber({ min: 0, max: idsPersons.length - 1 })],
-        dailyLimit: randNumber({ min: 100, max: 1000, fraction: 0, precision: 100 }),
+        daily_limit: randNumber({ min: 100, max: 1000, fraction: 0, precision: 100 }),
         active: randBoolean(),
         type: randNumber({ min: 1, max: 5, fraction: 0, precision: 1 }),
     }));

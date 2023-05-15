@@ -5,7 +5,7 @@ import db from "./database";
 
 const props = z.object({
     tableName: z.string(),
-    columnsToSearch: z.array(z.string()),
+    columnsToSearch: z.array(z.string()).optional(),
     columnsToList: z.array(z.string()),
     page: z.number().int().gte(1),
     rowsPerPage: z.number().int().nonnegative(),
@@ -33,7 +33,7 @@ type Props = z.infer<typeof props>;
 export async function listFromTable(input: Props) {
     const {
         tableName,
-        columnsToSearch,
+        columnsToSearch = [],
         columnsToList,
         page,
         rowsPerPage,

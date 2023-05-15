@@ -129,5 +129,182 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "3cf68fcc-95da-429d-93d5-271578dd58b2",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "Create Account",
+    "url": "{{baseUrl}}/accounts/",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-05-15T05:48:01.056Z",
+    "modified": "2023-05-15T05:56:19.486Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"person_id\": 10,\n    \"dailyLimit\": 500,\n    \"type\": 10\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "4d6776ec-b6dc-43f5-94fd-ac0d826f8ca3",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "Get Account",
+    "url": "{{baseUrl}}/accounts/{id}",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-05-15T05:48:01.057Z",
+    "modified": "2023-05-15T06:17:47.836Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "10",
+        "isPath": true
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "1c0c2c0a-f64e-4325-89ca-2b5cc9566101",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "Update Account Status",
+    "url": "{{baseUrl}}/accounts/{id}/status",
+    "method": "PATCH",
+    "sortNum": 25000,
+    "created": "2023-05-15T05:48:01.058Z",
+    "modified": "2023-05-15T18:42:01.539Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "10",
+        "isPath": true
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"status\": \"activex\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6045a652-888a-4503-b817-51dfa000242c",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "List Accounts",
+    "url": "{{baseUrl}}/accounts?orderBy=balance&descending=1",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2023-05-15T05:48:01.059Z",
+    "modified": "2023-05-15T19:44:03.941Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "page",
+        "value": "5",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "rowsPerPage",
+        "value": "10",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "search",
+        "value": "mail.",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "orderBy",
+        "value": "balance",
+        "isPath": false
+      },
+      {
+        "name": "descending",
+        "value": "1",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "90d6e5b3-e69a-48ff-9fb3-9ae8ad4fdc9f",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "Delete Account",
+    "url": "{{baseUrl}}/accounts/{id}",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2023-05-15T05:48:01.060Z",
+    "modified": "2023-05-15T19:42:35.482Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "3a",
+        "isPath": true
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "7fade1d6-8085-4fae-bcbf-695ddc110986",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "Update Account Daily Limit",
+    "url": "{{baseUrl}}/accounts/{id}/daily-limit",
+    "method": "PATCH",
+    "sortNum": 27500,
+    "created": "2023-05-15T06:38:37.512Z",
+    "modified": "2023-05-15T18:42:42.517Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "1",
+        "isPath": true
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"daily_limit\": 343.33\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ec6a74ba-5597-4b36-9602-d4e2709049aa",
+    "colId": "ca7b00f6-faf2-47c6-870d-ac26ca451eda",
+    "containerId": "",
+    "name": "Update Account Daily Limit Copy",
+    "url": "{{baseUrl}}/accounts/{id}/type",
+    "method": "PATCH",
+    "sortNum": 28750,
+    "created": "2023-05-15T18:45:23.934Z",
+    "modified": "2023-05-15T18:45:40.381Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "1",
+        "isPath": true
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"type\": 3\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

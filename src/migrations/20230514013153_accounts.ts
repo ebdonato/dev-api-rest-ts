@@ -11,8 +11,8 @@ export async function up(knex: Knex): Promise<void> {
             .onUpdate("CASCADE")
             .onDelete("CASCADE");
         table.decimal("balance").notNullable().defaultTo(0);
-        table.decimal("dailyLimit").notNullable();
-        table.boolean("active").notNullable();
+        table.decimal("daily_limit").notNullable().defaultTo(1000);
+        table.boolean("active").notNullable().defaultTo(false);
         table.integer("type").notNullable();
         table.timestamps(true, true);
     });
