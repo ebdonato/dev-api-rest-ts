@@ -84,7 +84,7 @@ export async function updatePersonController(
 
 export async function deletePersonController(req: Request<findPersonInput>, res: Response) {
     try {
-        log.info("Finding person");
+        log.info("Deleting person");
         const { id } = req.params;
         const person = await findPersonById(+id);
 
