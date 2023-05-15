@@ -1,12 +1,12 @@
 import { Knex } from "knex";
 
-import { PG_CONNECTION_STRING, SQL_FILE_PATH } from "./constants";
+import { CONNECTION_STRING } from "./constants";
 
 const config: { [key: string]: Knex.Config } = {
     development: {
         client: "sqlite3",
         connection: {
-            filename: SQL_FILE_PATH,
+            filename: "../dev.sqlite3",
         },
         migrations: {
             tableName: "migrations",
@@ -18,7 +18,7 @@ const config: { [key: string]: Knex.Config } = {
     },
     production: {
         client: "postgresql",
-        connection: PG_CONNECTION_STRING,
+        connection: CONNECTION_STRING,
         pool: {
             min: 2,
             max: 10,

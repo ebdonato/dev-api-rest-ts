@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "_id": "5f6f6e4f-9791-4217-a0cc-953664848e98",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -2,
+    "created": "2023-05-14T04:54:02.464Z",
+    "modified": "2023-05-14T04:54:02.464Z",
+    "data": []
+  },
+  {
+    "_id": "34d02627-aa3e-417c-a94e-6a6bd46c8200",
+    "name": "(Local Env)",
+    "default": false,
+    "global": true,
+    "local": true,
+    "sortNum": -1,
+    "created": "2023-05-14T04:54:27.813Z",
+    "modified": "2023-05-14T04:54:27.813Z",
+    "data": []
+  }
+]

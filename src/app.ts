@@ -1,21 +1,24 @@
 import express, { Request, Response } from "express";
-import knex from "knex";
 
-import knexConfig from "./knexfile";
-import { ENVIRONMENT } from "./constants";
+import { migrateDatabase } from "./helpers/database";
+import { setupApp } from "./helpers/setupApp";
 
-const knexInstance = knex({
-    ...knexConfig[ENVIRONMENT],
-});
-
-knexInstance.migrate.latest({
-    directory: "./src/migrations",
-});
+import personsRoutes from "./routes/persons.routes";
 
 const app = express();
 
+setupApp(app);
+
+migrateDatabase();
+
+app.use("/persons", personsRoutes);
+
 app.get("/", (req: Request, res: Response) => {
     res.send("Hello World!");
+});
+
+app.all("*", (req, res) => {
+    res.status(404).send("🚫 Rota Inválida 🚫");
 });
 
 export default app;
