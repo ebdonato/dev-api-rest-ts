@@ -10,26 +10,33 @@ A solução é baseada no framework [Express](https://expressjs.com/pt-br/) para
 
 Para organização dos arquivos/scripts, é utilizado o [Consign](https://github.com/jarradseers/consign).
 
+A aplicação está escrita em Typescript.
+
 ## Manual de Execução
 
-A aplicação utiliza duas soluções de banco de dados dependendo do valor da variável de ambiente **NODE_ENV**.
-
-Caso a variável seja definida como _development_ (padrão), o banco de dados utilizado será SQLite, caso seja definido como _production_, o banco de dados utilizado será Postgres.
-
-No modo _development_, para executar a aplicação baste executar o _script_ **NPM** **_dev_**, que o arquivo do SQLite será criado.
-
-> npm run dev
-
-No modo _production_, além de ajustar a variável **NODE_ENV** e necessário ajustar também a variável **PG_CONNECTION_STRING** com as configurações de conexão ao banco de dados Postgres.
-
-Por exemplo:
+A aplicação utiliza como solução de banco de dados o PostgreSQL, onde a conexão é configurada através de uma variável de ambiente, cujo valor padrão é:
 
 ```env
-NODE_ENV=production
 PG_CONNECTION_STRING=postgres://postgres:123456@localhost:5432/banco
 ```
 
 > As variáveis de ambiente podem ser definidas em um arquivo **.env** no diretório raiz.
+
+Para executar a aplicação com _hot reload_, utilize o seguinte comando:
+
+> npm run dev
+
+Para executar a aplicação com código Javascript, é necessário realizar o _build_ primeiro, com o seguinte comando:
+
+> npm run build
+
+A saída, em JS, estará no diretório `./dist`. Para rodar esse código gerado, utilize o seguinte comando:
+
+> npm start
+
+Por padrão, a aplicação escuta novas requisições na porta 3000, que também pode ser definido através de variável de ambiente.
+
+## Desenvolvimento
 
 ### Migrações
 
