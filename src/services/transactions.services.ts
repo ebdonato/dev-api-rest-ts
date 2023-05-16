@@ -4,18 +4,17 @@ import log from "../helpers/logger";
 import { createTransactionInput, listTransactionsInput } from "../schemas/transactions.schema";
 
 export async function createTransaction(input: createTransactionInput) {
+    const { account_id, value } = input;
     const trx = await db.transaction();
 
     try {
         const [{ id }] = await trx("transactions").insert(input).returning("id");
 
-        const { account_id, value } = input;
-
         const currentBalance = await getBalanceTransactions(account_id);
 
         const balance = currentBalance + +value;
 
-        await trx("accounts").update({ balance }).where({ id: account_id });
+        await trx("accounts").update({ balance, updated_at: new Date() }).where({ id: account_id });
 
         log.info(`New balance for Account ID ${account_id} is ${balance.toFixed(2)}`);
 

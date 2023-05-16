@@ -4,7 +4,8 @@ import log from "../helpers/logger";
 import { createAccountInput, listAccountsInput } from "../schemas/accounts.schemas";
 
 export async function createAccount(input: createAccountInput) {
-    const [{ id }] = await db("accounts").insert(input).returning("id");
+    const { type, person_id, daily_limit } = input;
+    const [{ id }] = await db("accounts").insert({ type, person_id, daily_limit }).returning("id");
     log.info(`Account created: ${id}`);
 }
 
@@ -15,18 +16,18 @@ export async function findAccountById(id: number) {
 }
 
 export async function updateStatusAccountById(id: number, active: boolean) {
-    await db("accounts").update({ active }).where({ id });
+    await db("accounts").update({ active, updated_at: new Date() }).where({ id });
     log.info(`Account status updated to ${active ? "Active" : "Inactive"}`);
 }
 
 export async function updateDailyLimitAccountById(id: number, daily_limit: number) {
     const value = daily_limit.toFixed(2);
-    await db("accounts").update({ daily_limit: value }).where({ id });
+    await db("accounts").update({ daily_limit: value, updated_at: new Date() }).where({ id });
     log.info(`Account Daily Limit updated to ${value}`);
 }
 
 export async function updateTypeAccountById(id: number, type: number) {
-    await db("accounts").update({ type }).where({ id });
+    await db("accounts").update({ type, updated_at: new Date() }).where({ id });
     log.info(`Account Type updated to ${type}`);
 }
 

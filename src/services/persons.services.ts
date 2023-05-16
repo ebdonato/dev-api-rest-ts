@@ -4,7 +4,8 @@ import log from "../helpers/logger";
 import listFromTable from "../helpers/listTable";
 
 export async function createPerson(input: createPersonInput) {
-    const [{ id }] = await db("persons").insert(input).returning("id");
+    const { name, cpf, birth_date, email } = input;
+    const [{ id }] = await db("persons").insert({ name, cpf, birth_date, email }).returning("id");
     log.info(`Person created: ${id}`);
 }
 
@@ -39,9 +40,10 @@ export async function updatePersonById(id: number, input: updatePersonInput["bod
         log.warn("Person not updated");
         return;
     }
-    await db("persons")
-        .update({ ...input, updated_at: new Date() })
-        .where({ id });
+
+    const { name, cpf, birth_date, email } = input;
+
+    await db("persons").update({ name, cpf, birth_date, email, updated_at: new Date() }).where({ id });
 
     log.info("Person updated");
 }
