@@ -56,6 +56,24 @@ export async function findAccountController(req: Request<findAccountInput>, res:
     }
 }
 
+export async function getAccountBalanceController(req: Request<findAccountInput>, res: Response) {
+    try {
+        log.info("Finding account");
+        const { id } = req.params;
+        const account = await findAccountById(+id);
+
+        if (!account) {
+            res.status(404).send({ message: "Conta não encontrada" });
+            return;
+        }
+        const { balance } = account;
+        res.send({ balance });
+    } catch (error) {
+        log.error(error);
+        res.status(500).send(error);
+    }
+}
+
 export async function updateStatusAccountController(
     req: Request<findAccountInput, {}, updateStatusAccountInput["body"]>,
     res: Response

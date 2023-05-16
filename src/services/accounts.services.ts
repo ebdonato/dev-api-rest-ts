@@ -1,4 +1,3 @@
-import { ENVIRONMENT } from "../constants";
 import db from "../helpers/database";
 import listFromTable from "../helpers/listTable";
 import log from "../helpers/logger";
@@ -42,7 +41,6 @@ export async function listAccounts(input: listAccountsInput) {
         rowsPerPage: rowsPerPage ? +rowsPerPage : 0,
         orderBy,
         descending: descending === "true" || descending === "1",
-        searchInsensitive: ENVIRONMENT !== "development",
         filterAnd: {
             ...(active && { active: [active === "true" || active === "1"] }),
             ...(types && { type: types.map((type) => +type) }),

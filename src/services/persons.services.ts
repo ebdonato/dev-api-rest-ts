@@ -2,7 +2,6 @@ import { createPersonInput, listPersonsInput, updatePersonInput } from "../schem
 import db from "../helpers/database";
 import log from "../helpers/logger";
 import listFromTable from "../helpers/listTable";
-import { ENVIRONMENT } from "../constants";
 
 export async function createPerson(input: createPersonInput) {
     const [{ id }] = await db("persons").insert(input).returning("id");
@@ -29,7 +28,6 @@ export async function listPersons(input: listPersonsInput) {
         orderBy,
         descending: descending === "true" || descending === "1",
         search,
-        searchInsensitive: ENVIRONMENT !== "development",
     });
 
     log.info(`Persons found: ${result.rowsNumber}`);

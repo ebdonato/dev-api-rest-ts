@@ -11,6 +11,7 @@ import {
     createAccountController,
     deleteAccountController,
     findAccountController,
+    getAccountBalanceController,
     listAccountsController,
     updateDailyLimitAccountController,
     updateStatusAccountController,
@@ -25,6 +26,8 @@ router.get("/", validateSchema(listAccountsSchema), listAccountsController);
 router.get("/:id", validateSchema(findAccountSchema), findAccountController);
 
 router.delete("/:id", validateSchema(findAccountSchema), deleteAccountController);
+
+router.get("/:id/balance", validateSchema(findAccountSchema), getAccountBalanceController);
 
 router.patch("/:id/status", validateSchema(updateStatusAccountSchema), updateStatusAccountController);
 

@@ -1,4 +1,5 @@
 import { object, string, number, enum as zEnum, TypeOf } from "zod";
+import { DEFAULT_MAX_DAILY_LIMIT, DEFAULT_MIN_DAILY_LIMIT } from "../constants";
 
 export const createAccountSchema = object({
     body: object({
@@ -8,7 +9,7 @@ export const createAccountSchema = object({
             .int()
             .positive()
             .positive(),
-        daily_limit: number().gte(100).lte(1000).optional(),
+        daily_limit: number().gte(DEFAULT_MIN_DAILY_LIMIT).lte(DEFAULT_MAX_DAILY_LIMIT).optional(),
         type: number({
             required_error: "Tipo da Conta é obrigatório",
         })
@@ -41,8 +42,8 @@ export const updateDailyLimitAccountSchema = object({
         daily_limit: number({
             required_error: "Limite Diário é obrigatório",
         })
-            .gte(100)
-            .lte(1000),
+            .gte(DEFAULT_MIN_DAILY_LIMIT)
+            .lte(DEFAULT_MAX_DAILY_LIMIT),
     }),
 }).merge(findAccountSchema);
 

@@ -12,25 +12,20 @@ const props = z.object({
     orderBy: z.string(),
     descending: z.boolean().optional(),
     search: z.string().optional(),
-    searchInsensitive: z.boolean().optional(),
     filterAnd: z.record(z.array(z.any())).optional(),
     filterBetween: z.record(z.tuple([z.any(), z.any()])).optional(),
 });
 
-// type Props = Partial<
-//     Pick<
-//         z.infer<typeof props>,
-//         "page" | "rowsPerPage" | "descending" | "searchInsensitive" | "filterAnd" | "filterBetween" | "search"
-//     >
-// > &
-//     Pick<
-//         z.infer<typeof props>,
-//         "tableName" | "columnsToSearch" | "columnsToList" | "searchInsensitive" | "filterAnd" | "filterBetween"
-//     >;
+type Input = z.infer<typeof props>;
 
-type Props = z.infer<typeof props>;
+type Output = {
+    items: any[];
+    currentPage: number;
+    pages: number;
+    rowsNumber: number;
+};
 
-export async function listFromTable(input: Props) {
+export async function listFromTable(input: Input): Promise<Output> {
     const {
         tableName,
         columnsToSearch = [],
@@ -42,7 +37,6 @@ export async function listFromTable(input: Props) {
         search,
         filterAnd = {},
         filterBetween = {},
-        searchInsensitive = true,
     } = props.parse(input);
 
     const filterBetweenClause = (builder: Knex.QueryBuilder) => {
@@ -65,9 +59,7 @@ export async function listFromTable(input: Props) {
     const searchClause = (builder: Knex.QueryBuilder) => {
         search &&
             columnsToSearch.forEach((el) => {
-                builder = searchInsensitive
-                    ? builder.orWhereILike(el, `%${search}%`)
-                    : builder.orWhereLike(el, `%${search}%`);
+                builder = builder.orWhereILike(el, `%${search}%`);
             });
 
         return builder;
@@ -97,7 +89,7 @@ export async function listFromTable(input: Props) {
         .offset(offset);
 
     return {
-        [tableName]: items,
+        items,
         currentPage,
         pages,
         rowsNumber,
